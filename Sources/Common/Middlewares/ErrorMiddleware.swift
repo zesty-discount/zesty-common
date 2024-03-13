@@ -2,13 +2,13 @@ import Entities
 import JWT
 import Vapor
 
-struct ErrorResponse: Codable {
+public struct ErrorResponse: Codable {
     var error: Bool
     var reason: String
     var errorIdentifier: String?
 }
 
-extension ErrorMiddleware {
+public extension ErrorMiddleware {
     static func `custom`(environment: Environment) -> ErrorMiddleware {
         return .init { req, error in
             let status: HTTPResponseStatus

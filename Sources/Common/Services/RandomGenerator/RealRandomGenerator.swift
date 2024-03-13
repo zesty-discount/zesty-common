@@ -1,6 +1,6 @@
 import Vapor
 
-extension Application.RandomGenerators.Provider {
+public extension Application.RandomGenerators.Provider {
     static var random: Self {
         .init {
             $0.randomGenerators.use { _ in RealRandomGenerator() }
@@ -8,8 +8,8 @@ extension Application.RandomGenerators.Provider {
     }
 }
 
-struct RealRandomGenerator: RandomGenerator {
-    func generate(bits: Int) -> String {
+public struct RealRandomGenerator: RandomGenerator {
+    public func generate(bits: Int) -> String {
         [UInt8].random(count: bits / 8).hex
     }
 }
