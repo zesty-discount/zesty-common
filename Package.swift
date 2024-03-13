@@ -1,7 +1,9 @@
 // swift-tools-version: 5.9
-// The swift-tools-version declares the minimum version of Swift required to build this package.
-
 import PackageDescription
+
+let vapor = Target.Dependency.product(name: "Vapor", package: "vapor")
+let fluent = Target.Dependency.product(name: "Fluent", package: "fluent")
+let entities = Target.Dependency.product(name: "Entities", package: "id5-entities")
 
 let package = Package(
     name: "id5-common",
@@ -10,13 +12,20 @@ let package = Package(
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(name: "Common", targets: ["Common"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/vapor/vapor.git", from: "4.83.1"),
+        .package(url: "https://github.com/vapor/fluent.git", from: "4.8.0"),
+        .package(url: "https://github.com/smeshko/id5-entities", branch: "main"),
+        .package(url: "https://github.com/vapor/jwt.git", from: "4.0.0"),
+
+    ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
-        .target(
-            name: "Common"),
-        .testTarget(
-            name: "CommonTests",
-            dependencies: ["Common"]),
+        .target(name: "Common", dependencies: [
+            vapor, fluent, entities,
+            .product(name: "JWT", package: "jwt"),
+        ]),
+        .testTarget(name: "CommonTests", dependencies: ["Common"]),
     ]
 )
