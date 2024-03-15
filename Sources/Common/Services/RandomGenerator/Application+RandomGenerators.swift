@@ -8,6 +8,10 @@ public protocol RandomGenerator {
 extension Application {
     public struct RandomGenerators {
         public struct Provider {
+            public init(run: @escaping (Application) -> Void) {
+                self.run = run
+            }
+            
             let run: ((Application) -> Void)
         }
         
