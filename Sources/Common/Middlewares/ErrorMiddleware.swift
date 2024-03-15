@@ -3,9 +3,9 @@ import JWT
 import Vapor
 
 public struct ErrorResponse: Codable {
-    var error: Bool
-    var reason: String
-    var errorIdentifier: String?
+    public var error: Bool
+    public var reason: String
+    public var errorIdentifier: String?
 }
 
 public extension ErrorMiddleware {
