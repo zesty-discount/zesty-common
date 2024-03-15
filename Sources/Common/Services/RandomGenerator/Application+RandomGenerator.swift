@@ -8,7 +8,7 @@ extension Application {
     public struct AppRandomGenerator: RandomGenerator {
         let app: Application
         
-        var generator: RandomGenerator {
+        public var generator: RandomGenerator {
             guard let makeGenerator = app.randomGenerators.storage.makeGenerator else {
                 fatalError("randomGenerators not configured, please use: app.randomGenerators.use")
             }
