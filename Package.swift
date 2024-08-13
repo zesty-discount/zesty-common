@@ -3,7 +3,7 @@ import PackageDescription
 
 let vapor = Target.Dependency.product(name: "Vapor", package: "vapor")
 let fluent = Target.Dependency.product(name: "Fluent", package: "fluent")
-let entities = Target.Dependency.product(name: "Entities", package: "id5-entities")
+let entities = Target.Dependency.product(name: "Entities", package: "zesty-entities")
 
 let package = Package(
     name: "zesty-common",
