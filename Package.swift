@@ -6,7 +6,7 @@ let fluent = Target.Dependency.product(name: "Fluent", package: "fluent")
 let entities = Target.Dependency.product(name: "Entities", package: "id5-entities")
 
 let package = Package(
-    name: "id5-common",
+    name: "zesty-common",
     platforms: [.macOS(.v10_15), .iOS(.v17)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
@@ -15,7 +15,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/vapor/vapor.git", from: "4.83.1"),
         .package(url: "https://github.com/vapor/fluent.git", from: "4.8.0"),
-        .package(url: "https://github.com/smeshko/id5-entities", branch: "main"),
+        .package(url: "https://github.com/zesty-discount/zesty-entities", branch: "main"),
         .package(url: "https://github.com/vapor/jwt.git", from: "4.0.0"),
 
     ],
