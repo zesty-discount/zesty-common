@@ -15,7 +15,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/vapor/vapor.git", from: "4.83.1"),
         .package(url: "https://github.com/vapor/fluent.git", from: "4.8.0"),
-        .package(url: "https://github.com/zesty-discount/zesty-entities", branch: "feature/ah/tags"),
+        .package(url: "https://github.com/zesty-discount/zesty-entities", branch: "feature/ah/foodItems-hotfix"),
         .package(url: "https://github.com/vapor/jwt.git", from: "4.0.0"),
 
     ],
