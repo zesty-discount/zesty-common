@@ -1,4 +1,4 @@
-// swift-tools-version: 5.9
+// swift-tools-version: 6.0
 import PackageDescription
 
 let vapor = Target.Dependency.product(name: "Vapor", package: "vapor")
@@ -7,7 +7,7 @@ let entities = Target.Dependency.product(name: "Entities", package: "zesty-entit
 
 let package = Package(
     name: "zesty-common",
-    platforms: [.macOS(.v10_15), .iOS(.v17)],
+    platforms: [.macOS(.v13), .iOS(.v17)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(name: "Common", targets: ["Common"]),
