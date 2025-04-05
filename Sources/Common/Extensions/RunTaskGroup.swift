@@ -20,17 +20,18 @@ import Foundation
 ///   - task: the async function that is called for each element
 ///   - onFinished: any additional transformation to be done on each result of the function
 /// - Returns: the result of the async functions mapped to the initial array of elements
-public func runTaskGroup<V: Sendable, E>(
+public func runTaskGroup<V: Sendable, E: Sendable>(
     for type: V.Type,
     elements: [E],
-    task: @escaping (E) async throws -> V,
+    task: @Sendable @escaping (E) async throws -> V,
     onFinished: ((inout V) -> Void)? = nil
 ) async -> [V] {
     var result: [V] = []
     
     await withTaskGroup(of: Optional<V>.self) { group in
         for symbol in elements {
-            group.addTask {
+            let symbol = symbol // Create a new binding to make it Sendable
+            group.addTask { @Sendable in
                 do {
                     return try await task(symbol)
                 } catch { return nil }

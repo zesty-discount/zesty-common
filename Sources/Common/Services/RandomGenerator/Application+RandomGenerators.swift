@@ -26,8 +26,23 @@ extension Application {
             storage.makeGenerator = makeGenerator
         }
         
-        final class Storage {
-            var makeGenerator: ((Application) -> RandomGenerator)?
+        final class Storage: @unchecked Sendable {
+            private let lock = NSLock()
+            private var _makeGenerator: ((Application) -> RandomGenerator)?
+            
+            var makeGenerator: ((Application) -> RandomGenerator)? {
+                get {
+                    lock.lock()
+                    defer { lock.unlock() }
+                    return _makeGenerator
+                }
+                set {
+                    lock.lock()
+                    defer { lock.unlock() }
+                    _makeGenerator = newValue
+                }
+            }
+            
             init() {}
         }
         
